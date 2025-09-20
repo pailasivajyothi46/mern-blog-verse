@@ -1,8 +1,9 @@
 // import ProductCard from "./ProductCard.jsx"
 import NavBar from "./NavBar.jsx"
 import HomePage from "./HomePage.jsx"
-// import SignIn from "./SignIn.jsx"
-// import SignUp from "./SignUp.jsx"
+import {Routes,Route} from 'react-router-dom'
+import SignIn from "./SignIn.jsx"
+import SignUp from "./SignUp.jsx"
 function App() {
 
   return (
@@ -14,15 +15,20 @@ function App() {
     //   <ProductCard/>
 
     //  </div> 
-    <div>
-      
-        <NavBar />
-        <HomePage/>
-        {/* <SignIn/> */}
-         {/* <SignUp />  */}
+    
+      <Routes>
+      <Route path="/" element={<NavBar/>} />
+        <Route path="/signup" element={<SignUp/>}/>
+        <Route path="/signin" element={<SignIn/>}/>
+        <Route path="/homepage" element={<HomePage/>}/>
+      </Routes>
+        //  <NavBar />
+        // <HomePage/> 
+        //  <SignIn/> 
+        //  <SignUp />
          
          
-         </div> 
+       
   )
 }
 
