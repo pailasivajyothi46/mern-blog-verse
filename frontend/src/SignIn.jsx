@@ -3,7 +3,7 @@ import NavBar from "./NavBar"
 import { Mail } from 'lucide-react';
 import { KeyRound } from 'lucide-react';
 import { Eye } from 'lucide-react';
-import { EyeOff } from 'lucide-react';
+
 const SignIn = () => {
     return (
         <div className="flex flex-col items-center min-h-screen  bg-indigo-50">
@@ -23,7 +23,7 @@ const SignIn = () => {
                     <p>Password</p>
                   <div className='relative'> <input type="password" placeholder="enter password" className=" border w-400px rounded-xl px-10 py-1 " />
                     <KeyRound className='absolute top-2 left-2 right-2 bottom-2'/>
-                    <Eye className="absolute right-2 top-1"/>
+                   <p> <Eye className="absolute right-2 top-1"/> </p>
                 </div> </div>
             </form>
             <div className="flex  justify-around gap-3 mt-9 mb-8">
@@ -33,7 +33,7 @@ const SignIn = () => {
                 <span className="px-6 text-blue-800">forgot Password</span>
                 
             </div>
-            <div classNmae="border  rounded-xl   ">
+            <div className="border  rounded-xl   ">
                 <button className="text-white-700 bg-green-700 font-semibold   rounded-xl text-center h px-10 py-2"> sign in</button>
             </div>
             <div className="flex justify arround mt-5">
