@@ -17,6 +17,7 @@ const SignUp = () => {
         confirmPassword: ""
 
     })
+    const [isopenmodal, setisopenmodal] = useState(false)
     const [error, setError] = useState("")
     const [success, setSuccess] = useState("")
     const [showPassword, setPassword] = useState(false)
@@ -28,6 +29,7 @@ const SignUp = () => {
         confirmPassword: ""
 
     })
+    const[isloading,setisloading]=useState(false)
     const handlePassword = () => {
         setPassword((password) => !password)
     }
@@ -50,6 +52,7 @@ const SignUp = () => {
 
     }
     const handleSubmit = (event) => {
+        setisloading(true)
         event.preventDefault();
         let newErrors = {}
         if (!formData.fullName) {
@@ -69,14 +72,19 @@ const SignUp = () => {
         }
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors)
+            setisloading(false)
         } else {
-            setSuccess("your account created successfully")
+           setTimeout(()=>{ setSuccess("your account created successfully")
             setFormData({
                 fullName: "",
                 email: "",
                 password: "",
                 confirmPassword: ""
             })
+            setisopenmodal((isopenmodal)=>!isopenmodal)
+        setisloading(false) } ,3000) 
+            
+        
         }
 
 
@@ -153,14 +161,28 @@ const SignUp = () => {
                 {success && <p className="text-green-500">{success}</p>}  */}
                 {success && <p className="text-green-500">{success}</p>}
 
-                <button type="submit" className="bg-purple-600 flex justify-center gap-3 text-white font-semibold px-3 py-1  rounded-xl w-[90%]">< CircleUser className="" /> <p>create Account</p> </button>
+                <button type="submit" className="bg-purple-600 flex justify-center gap-3 text-white font-semibold px-3 py-1  rounded-xl w-[90%]">< CircleUser className="" /> <p>{isloading?"creating...":"create Account"}</p> </button>
                 <div className="flex w-[90%] gap-10  ">
                     <p className="text-gray-700 font-semibold"> Already have an account?</p>
                     <Link to="/signin" className="text-fuchsia-700 hover:underline cursor-point"> sign in here</ Link>
                 </div>
                 < Link to="/homepage" className="text-gray-700 font-semibold   rounded-xl cursor-pointer text-center hover:bg-red-400 py-3 px-2 ">back to home</Link>
             </form>
+            {
+                isopenmodal &&
+                <div className="fixed flex justify-center items-center h-dvh w-dvw gap-5 rounded-lg px-5 py-4 ">
+                    <div className="absolute h-dvh w-dvw bg-black opacity-50"></div>
+                    <div className="border-gray-500 bg-white z-10 w-[40%]  p-6 rounded-lg">
+                        <p className="font-bold">hello ,Welcome to BlogVerse</p>
+                        <p>your account has been created successfully.you can create your posts now</p>
+                        <div className="flex gap-9">
+                            <Link to="/signin" className="bg-blue-200 border-gray-500 rounded-lg ">login</Link>
+                            <button onClick={()=>{setisopenmodal(false)}} className="bg-gray-50">close</button>
+                        </div>
 
+                    </div>
+
+                </div>}
         </div>
     )
 }
